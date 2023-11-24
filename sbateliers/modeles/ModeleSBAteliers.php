@@ -5,7 +5,7 @@
 		private static $connexion = null ;
 		
 		private function __construct(){
-			self::$connexion = new PDO( 'mysql:host=localhost;dbname=Sanayabio', 'slam', 'azerty' ) ;
+			self::$connexion = new PDO( 'mysql:host=localhost;dbname=sbateliers', 'sanayabio', 'Sb2022' ) ;
 		}
 
 		private static function getConnexion(){
