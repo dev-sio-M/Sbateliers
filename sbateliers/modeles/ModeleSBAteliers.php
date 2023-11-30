@@ -129,7 +129,29 @@ FIN_REQ_AUTRES_COMMENTAIRES;
 }
 
 		
-		public static function getMonCommentaireAtelier( $numeroAtelier , $numeroClient ){
+
+public static function supprimerCommentaire($numeroClient, $numeroAtelier) {
+    try {
+        $bd = self::getConnexion();
+
+        // Requête pour supprimer le commentaire spécifique
+        $sql = "DELETE FROM commenter WHERE client = :client AND atelier = :atelier";
+        $stmt = $bd->prepare($sql);
+        $stmt->bindParam(':client', $numeroClient);
+        $stmt->bindParam(':atelier', $numeroAtelier);
+        $stmt->execute();
+
+        // Actualiser les commentaires après la suppression
+        $commentaires = self::getCommentairesAtelier($numeroAtelier);
+
+        return $commentaires; // Retourne la liste de commentaires actualisée
+    } catch (PDOException $e) {
+        // Gérer les erreurs éventuelles ici
+        return false;
+    }
+}
+
+	public static function getMonCommentaireAtelier( $numeroAtelier , $numeroClient ){
 			$bd = self::getConnexion() ;
 			$sql = <<<FIN_REQ_COMMENTAIRES
 				select commentaire , date_redaction
