@@ -25,6 +25,14 @@
                 <p>
                     <?= $commentaire['commentaire'] ?>
                 </p>
+                <?php if ($commentaire['client_id'] === $id_client_connecte) { ?>
+                    <!-- Formulaire pour supprimer le commentaire -->
+<form action="/sbateliers/ateliers/<?= $atelier['numero'] ?>/commentaires/supprimer" method="POST">
+    <input type="hidden" name="numeroClient" value="<?= $commentaire['client_id'] ?>">
+    <input type="hidden" name="numeroAtelier" value="<?= $atelier['numero'] ?>">
+    <button type="submit">Supprimer</button>
+</form>
+                <?php } ?>
             </div>
 
         <?php } ?>
