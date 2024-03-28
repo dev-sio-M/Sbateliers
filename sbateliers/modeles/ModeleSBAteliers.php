@@ -146,7 +146,6 @@ public static function supprimerCommentaire($numeroClient, $numeroAtelier) {
 
         return $commentaires; // Retourne la liste de commentaires actualisée
     } catch (PDOException $e) {
-        // Gérer les erreurs éventuelles ici
         return false;
     }
 }
